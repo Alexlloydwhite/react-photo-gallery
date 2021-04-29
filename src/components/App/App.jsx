@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import Header from '../Header/Header'
 
 function App() {
 
@@ -10,14 +11,14 @@ function App() {
       })
         .then( response => {
           console.log('response from server!', response);
-          
+        })
+        .catch( error => {
+          console.log('error getting response from server..', error);
         })
     
       return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Gallery of My Life</h1>
-        </header>
+        <Header />
         <p>Gallery goes here</p>
         <img src="images/goat_small.jpg"/>
       </div>
