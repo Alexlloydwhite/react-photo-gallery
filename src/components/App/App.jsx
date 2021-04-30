@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import Header from '../Header/Header'
+import GalleryList from '../GalleryList/GalleryList';
 
 function App() {
 
-      axios({
-        method: 'GET',
-        url: '/gallery'
+  const [galleryObject, setGalleryObject] = useState([]);
+
+  const getGalleryObject = () => {
+    axios({
+      method: 'GET',
+      url: '/gallery'
+    })
+      .then(response => {
+        console.log('response from server!', response.data);
+        setGalleryObject(response.data);
       })
-        .then( response => {
-          console.log('response from server!', response);
-        })
-        .catch( error => {
-          console.log('error getting response from server..', error);
-        })
-    
-      return (
-      <div className="App">
-        <Header />
-        <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
-      </div>
-    );
+      .catch(error => {
+        console.log('error getting response from server..', error);
+      })
+  }
+
+  useEffect( () => {
+    getGalleryObject();
+  }, [] );
+
+
+  return (
+    <div className="App">
+      <Header />
+      <GalleryList galleryObject={galleryObject}/>
+    </div>
+  );
 }
 
 export default App;
