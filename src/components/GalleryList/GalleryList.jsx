@@ -5,15 +5,15 @@ function GalleryList(props) {
     for (let i = 0; i < props.galleryObject.length; i++) {
         console.log('In Gallery List loop!');
     }
-
     return (
         <div>
             {props.galleryObject.map( index => 
                 <GalleryItem 
-                    key = {index.id}
+                    id = {index.id}
                     path = {index.path}
                     description = {index.description}
                     likes = {index.likes}
+                    getGalleryObject={props.getGalleryObject}
                 />
                 )}
         </div>
