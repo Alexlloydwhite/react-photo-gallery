@@ -34,4 +34,23 @@ router.get('/', (req, res) => {
         })
 }); // END GET Route
 
+// POST Route
+router.post('/', (req, res) => {
+    // setting variables
+    let path = req.body.path;
+    let description = req.body.description;
+    // query text for db
+    let queryText = `INSERT INTO "gallery" ("path", "description")
+                        VALUES ($1, $2);`;
+
+    pool.query(queryText, [path, description] )
+        .then ( result => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log(`error making db query ${queryText}`, error);
+            res.sendStatus(500);
+        })
+}) // END POST Route
+
 module.exports = router;
