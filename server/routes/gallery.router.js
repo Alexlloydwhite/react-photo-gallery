@@ -22,7 +22,7 @@ router.put('/:id', (req, res) => {
 // GET Route
 router.get('/', (req, res) => {
     // query text to send to db
-    let queryText = `SELECT * FROM "gallery";`;
+    let queryText = `SELECT * FROM "gallery" ORDER BY "id";`;
     // sending query to db via pool
     pool.query(queryText)
         .then(result => {
