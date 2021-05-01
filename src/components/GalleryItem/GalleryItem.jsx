@@ -3,9 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function GalleryItem(props) {
-
-    console.log("props are:", props);
-
     // image is displayed default to TRUE
     const [toggled, setToggled] = useState(true);
 
@@ -20,7 +17,7 @@ function GalleryItem(props) {
 
     axios({
         method: 'PUT',
-        url: `/gallery/like/${id}`
+        url: `/gallery/${id}`
     })
         .then(response => {
             console.log(response);

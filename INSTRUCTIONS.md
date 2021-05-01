@@ -63,14 +63,14 @@ For each `feature` of your application, make a branch, work on the branch, and t
 
 ### Features
 
-- Move the data into a database (postgresql)
-    - name your database `react_gallery`
-    - include a `database.sql` file documenting your database tables
+[x] Move the data into a database (postgresql)
+    [x] name your database `react_gallery`
+    [x] include a `database.sql` file documenting your database tables
 - Add a form (new **component**) that allows a user to POST a new gallery item
-  - Client side form (use absolute URL for images)
-  - Server side route for posting an image
-- Ability to delete a gallery item
-- Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
-- Implement [uppy](https://uppy.io/) for image upload 
+  [] Client side form (use absolute URL for images)
+  [] Server side route for posting an image
+[] Ability to delete a gallery item
+[] Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
+[] Implement [uppy](https://uppy.io/) for image upload 
 
 > NOTE: The above stretch goals are intended to be completed in order.
