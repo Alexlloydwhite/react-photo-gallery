@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Header from '../Header/Header'
 import GalleryList from '../GalleryList/GalleryList';
+import GalleryItemForm from '../GalleryItemForm/GalleryItemForm';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <GalleryItemForm getGalleryObject={getGalleryObject} />
       <GalleryList galleryObject={galleryObject} getGalleryObject={getGalleryObject}/>
     </div>
   );
