@@ -1,6 +1,7 @@
-import './GalleryItem.css';
+// import './GalleryItem.css';
 import { useState } from 'react';
 import axios from 'axios';
+import Paper from '@material-ui/core/Paper'
 
 function GalleryItem(props) {
     // image is displayed default to TRUE
@@ -49,7 +50,7 @@ function GalleryItem(props) {
     }
 
     return (
-        <div className="galleryItem">
+        <Paper>
             {/* if image is toggled, display image */}
             {toggled && <img src={props.path}
                 onClick={toggleImage}
@@ -59,7 +60,7 @@ function GalleryItem(props) {
             <p>{props.likes} people love this! </p>
             <button data-id={props.id} onClick={addLike}>Love It!</button>
             <button data-id={props.id} onClick={deleteImage}>Delete</button>
-        </div>
+        </Paper>
     )
 }
 
