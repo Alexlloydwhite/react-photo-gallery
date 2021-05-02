@@ -4,13 +4,13 @@ const pool = require('../modules/pool.js');
 
 // PUT Route
 router.put('/:id', (req, res) => {
-   let id = req.params.id
-   console.log('in /like PUT request:', req.params.id);
+    let id = req.params.id
+    console.log('in /like PUT request:', req.params.id);
     // query to send to db
     let queryText = `UPDATE "gallery" SET "likes" = likes + 1 WHERE id=$1;`;
     // sending query to db via pool
     pool.query(queryText, [id])
-        .then( result => {
+        .then(result => {
             res.sendStatus(200);
         })
         .catch(error => {
@@ -43,8 +43,8 @@ router.post('/', (req, res) => {
     let queryText = `INSERT INTO "gallery" ("path", "description")
                         VALUES ($1, $2);`;
 
-    pool.query(queryText, [path, description] )
-        .then ( result => {
+    pool.query(queryText, [path, description])
+        .then(result => {
             res.sendStatus(201);
         })
         .catch(error => {
@@ -52,5 +52,24 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         })
 }) // END POST Route
+
+// DELETE Route
+router.delete('/:id', (req, res) => {
+    // grabbing id from request
+    let id = req.params.id;
+    console.log(('id of deleted item', id));
+
+    // query to send to db
+    let queryText = `DELETE FROM "gallery" WHERE id=$1;`;
+    // send query to db via pool
+    pool.query(queryText, [id])
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch( error => {
+            res.sendStatus(500);
+            console.log(`error making db request ${queryText}`, error);
+        })
+})
 
 module.exports = router;
