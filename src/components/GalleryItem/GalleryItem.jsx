@@ -15,19 +15,19 @@ function GalleryItem(props) {
         let id = event.currentTarget.dataset.id;
         console.log('Clicked like:', id);
 
-    axios({
-        method: 'PUT',
-        url: `/gallery/${id}`
-    })
-        .then(response => {
-            console.log('response from server (add like)', response);
-            // refresh state
-            props.getGalleryObject();
-            
+        axios({
+            method: 'PUT',
+            url: `/gallery/${id}`
         })
-        .catch(error => {
-            console.log('error on add like request:', error);
-        })
+            .then(response => {
+                console.log('response from server (add like)', response);
+                // refresh state
+                props.getGalleryObject();
+
+            })
+            .catch(error => {
+                console.log('error on add like request:', error);
+            })
     }
 
     const deleteImage = (event) => {
@@ -38,12 +38,12 @@ function GalleryItem(props) {
             method: 'DELETE',
             url: `/gallery/${id}`
         })
-            .then( response => {
+            .then(response => {
                 console.log('response from server (delete item)', response);
                 // refresh state
                 props.getGalleryObject();
             })
-            .catch( error => {
+            .catch(error => {
                 console.log('error on delete image request:', error);
             })
     }
