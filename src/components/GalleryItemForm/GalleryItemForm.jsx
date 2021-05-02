@@ -66,10 +66,8 @@ function GalleryItemForm({ getGalleryObject }) {
         }
 
         if (path && description) {
-            console.log(path, description);
+            addGalleryImage();
         }
-
-        // addGalleryImage();
     } // end handleSubmit
 
     return (
@@ -120,15 +118,3 @@ function GalleryItemForm({ getGalleryObject }) {
 }
 
 export default GalleryItemForm;
-
-    // <form onSubmit={handleSubmit}>
-    //     <input onChange={(event) => setPath(event.target.value)}
-    //         value={path}
-    //         placeholder="Image URL"
-    //     />
-    //     <input onChange={(event) => setDescription(event.target.value)}
-    //         value={description}
-    //         placeholder="Description"
-    //     />
-    //     <input id="save" type="submit" value="submit" />
-    // </form>

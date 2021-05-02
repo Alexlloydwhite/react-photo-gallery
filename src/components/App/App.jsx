@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../Header/Header'
 import GalleryContainer from '../GalleryContainer/GalleryContainer'
 import GalleryItemForm from '../GalleryItemForm/GalleryItemForm';
+import Layout from '../Layout/Layout';
 
 function App() {
 
@@ -33,14 +34,16 @@ function App() {
     <div className="App">
       <Header />
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <GalleryItemForm getGalleryObject={getGalleryObject} />
-          </Route>
-          <Route path="/gallery">
-            <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject} />
-          </Route>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <GalleryItemForm getGalleryObject={getGalleryObject} />
+            </Route>
+            <Route path="/gallery">
+              <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject} />
+            </Route>
+          </Switch>
+        </Layout>
       </Router>
     </div>
   );
