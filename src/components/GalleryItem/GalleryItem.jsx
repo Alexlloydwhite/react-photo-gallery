@@ -13,20 +13,39 @@ function GalleryItem(props) {
 
     const addLike = (event) => {
         let id = event.currentTarget.dataset.id;
-        console.log(id);
+        console.log('Clicked like:', id);
 
     axios({
         method: 'PUT',
         url: `/gallery/${id}`
     })
         .then(response => {
-            console.log(response);
+            console.log('response from server (add like)', response);
+            // refresh state
             props.getGalleryObject();
             
         })
         .catch(error => {
-            console.log(error);
+            console.log('error on add like request:', error);
         })
+    }
+
+    const deleteImage = (event) => {
+        let id = event.currentTarget.dataset.id;
+        console.log('clicked delete:', id);
+
+        axios({
+            method: 'DELETE',
+            url: `/gallery/${id}`
+        })
+            .then( response => {
+                console.log('response from server (delete item)', response);
+                // refresh state
+                props.getGalleryObject();
+            })
+            .catch( error => {
+                console.log('error on delete image request:', error);
+            })
     }
 
     return (
@@ -39,6 +58,7 @@ function GalleryItem(props) {
             {!toggled && <p id="galleryItemDescription" onClick={toggleImage}>{props.description}</p>}
             <p>{props.likes} people love this! </p>
             <button data-id={props.id} onClick={addLike}>Love It!</button>
+            <button data-id={props.id} onClick={deleteImage}>Delete</button>
         </div>
     )
 }
