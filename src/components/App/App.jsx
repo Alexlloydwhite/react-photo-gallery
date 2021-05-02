@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
-import Header from '../Header/Header'
 import GalleryContainer from '../GalleryContainer/GalleryContainer'
 import GalleryItemForm from '../GalleryItemForm/GalleryItemForm';
 import Layout from '../Layout/Layout';
@@ -32,14 +31,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/add">
               <GalleryItemForm getGalleryObject={getGalleryObject} />
             </Route>
-            <Route path="/gallery">
+            <Route path="/">
               <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject} />
             </Route>
           </Switch>

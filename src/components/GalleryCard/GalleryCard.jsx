@@ -77,7 +77,7 @@ function GalleryItem({ image, getGalleryObject }) {
 
     return (
         <div>
-            <Card elevation={1}>
+            <Card elevation={2}>
                 <CardContent>
                     <Typography color="Primary">
                         {image.likes} people love this!
