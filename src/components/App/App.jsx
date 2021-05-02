@@ -1,4 +1,5 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import Header from '../Header/Header'
@@ -23,16 +24,24 @@ function App() {
       })
   }
 
-  useEffect( () => {
+  useEffect(() => {
     getGalleryObject();
-  }, [] );
+  }, []);
 
 
   return (
     <div className="App">
       <Header />
-      <GalleryItemForm getGalleryObject={getGalleryObject} />
-      <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject}/>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <GalleryItemForm getGalleryObject={getGalleryObject} />
+          </Route>
+          <Route path="/gallery">
+            <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
