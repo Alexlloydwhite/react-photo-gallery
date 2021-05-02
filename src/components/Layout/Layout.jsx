@@ -10,6 +10,7 @@ import { AddCircleOutlined, SubjectOutlined } from '@material-ui/icons';
 import { useHistory, useLocation } from "react-router";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Avatar from '@material-ui/core/Avatar'
 
 const drawerWidth = 240
 
@@ -41,6 +42,9 @@ const useStyles = makeStyles((theme) => {
         toolbar: theme.mixins.toolbar,
         welcome: {
             flexGrow: 1,
+        },
+        avatar: {
+            marginLeft: theme.spacing(2)
         }
     }
 })
@@ -74,6 +78,10 @@ function Layout({ children }) {
                     <Typography className={classes.welcome} variant="h5" >
                         Fun In San Francisco!
                     </Typography>
+                    <Typography>
+                        Alex
+                    </Typography>
+                    <Avatar src= "/images/Alex.jpg" className={classes.avatar}/>
                 </Toolbar>
                 
             </AppBar>
