@@ -37,12 +37,10 @@ const useStyles = makeStyles((theme) => {
         },
         appbar: {
             width: `calc(100% - ${drawerWidth}px)`,
-            background: 'white'
         },
         toolbar: theme.mixins.toolbar,
         welcome: {
             flexGrow: 1,
-            color: 'black'
         }
     }
 })
@@ -55,12 +53,12 @@ function Layout({ children }) {
     const menuItems = [
         {
             text: 'Add Image',
-            icon: <AddCircleOutlined color="secondary" />,
+            icon: <AddCircleOutlined color="primary" />,
             path: '/add'
         },
         {
-            text: 'Gallery',
-            icon: <SubjectOutlined color="secondary" />,
+            text: 'View Gallery',
+            icon: <SubjectOutlined color="primary" />,
             path: '/'
         },
     ]
@@ -73,11 +71,13 @@ function Layout({ children }) {
                 elevation={0}
             >
                 <Toolbar>
-                    <Typography className={classes.welcome}>
+                    <Typography className={classes.welcome} variant="h5" >
                         Fun In San Francisco!
                     </Typography>
                 </Toolbar>
+                
             </AppBar>
+
             {/* side draw */}
             <Drawer
                 className={classes.drawer}
@@ -87,7 +87,7 @@ function Layout({ children }) {
             >
                 <div>
                     <Typography variant="h5" className={classes.title}>
-                        Fun in San Francisco
+                        Image Gallery
                     </Typography>
                 </div>
 

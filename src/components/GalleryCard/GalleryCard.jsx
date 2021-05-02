@@ -1,4 +1,3 @@
-// import './GalleryItem.css';
 import { useState } from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
@@ -24,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },
+    media: {
+        height: 300,
+        width: 300,
     }
 }))
 
@@ -79,30 +82,28 @@ function GalleryItem({ image, getGalleryObject }) {
         <div>
             <Card elevation={2}>
                 <CardContent>
-                    <Typography color="Primary">
-                        {image.likes} people love this!
-                    </Typography>
-                    <CardMedia>
-                        <img
-                            src={image.path}
-                            height="200"
-                            width="200"
-                        />
-                    </CardMedia>
+                    <img
+                        className={classes.media}
+                        src={image.path}
+                    />
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton>
-                        <DeleteForeverIcon
-                            data-id={image.id}
-                            onClick={deleteImage}
-                        />
+                    <IconButton
+                        data-id={image.id}
+                        onClick={deleteImage}
+                    >
+                        <DeleteForeverIcon color="primary"/>
                     </IconButton>
-                    <IconButton>
-                        <FavoriteIcon
-                            data-id={image.id}
-                            onClick={addLike}
-                        />
+                    <IconButton
+                        className={classes.icon}
+                        data-id={image.id}
+                        onClick={addLike}
+                    >
+                        <FavoriteIcon color="secondary"/>
                     </IconButton>
+                    <Typography color="textPrimary" gutterBottom> 
+                        {image.likes} people love this!
+                    </Typography>
                     <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
@@ -110,7 +111,7 @@ function GalleryItem({ image, getGalleryObject }) {
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                     >
-                        <ExpandMoreIcon />
+                        <ExpandMoreIcon color="primary"/>
                     </IconButton>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
