@@ -1,6 +1,6 @@
 CREATE TABLE "gallery" (
 "id" SERIAL PRIMARY KEY,
-"path" varchar(120) not null,
+"path" varchar(300) not null,
 "description" varchar(120) not null,
 "likes" INTEGER default 0
 );
