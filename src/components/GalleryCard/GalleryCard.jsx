@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper'
 
-function GalleryItem(props) {
+function GalleryItem({image, getGalleryObject}) {
     // image is displayed default to TRUE
     const [toggled, setToggled] = useState(true);
 
@@ -23,7 +23,7 @@ function GalleryItem(props) {
             .then(response => {
                 console.log('response from server (add like)', response);
                 // refresh state
-                props.getGalleryObject();
+                getGalleryObject();
 
             })
             .catch(error => {
@@ -42,7 +42,7 @@ function GalleryItem(props) {
             .then(response => {
                 console.log('response from server (delete item)', response);
                 // refresh state
-                props.getGalleryObject();
+                getGalleryObject();
             })
             .catch(error => {
                 console.log('error on delete image request:', error);
@@ -50,17 +50,17 @@ function GalleryItem(props) {
     }
 
     return (
-        <Paper>
+        <div>
             {/* if image is toggled, display image */}
-            {toggled && <img src={props.path}
+            {toggled && <img src={image.path}
                 onClick={toggleImage}
                 width="200" height="200" />}
             {/* if image is clicked, display description */}
-            {!toggled && <p id="galleryItemDescription" onClick={toggleImage}>{props.description}</p>}
-            <p>{props.likes} people love this! </p>
-            <button data-id={props.id} onClick={addLike}>Love It!</button>
-            <button data-id={props.id} onClick={deleteImage}>Delete</button>
-        </Paper>
+            {!toggled && <p id="galleryItemDescription" onClick={toggleImage}>{image.description}</p>}
+            <p>{image.likes} people love this! </p>
+            <button data-id={image.id} onClick={addLike}>Love It!</button>
+            <button data-id={image.id} onClick={deleteImage}>Delete</button>
+        </div>
     )
 }
 

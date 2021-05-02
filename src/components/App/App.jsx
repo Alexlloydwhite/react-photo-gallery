@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import Header from '../Header/Header'
-import GalleryList from '../GalleryList/GalleryList';
+import GalleryContainer from '../GalleryContainer/GalleryContainer'
 import GalleryItemForm from '../GalleryItemForm/GalleryItemForm';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Header />
       <GalleryItemForm getGalleryObject={getGalleryObject} />
-      <GalleryList galleryObject={galleryObject} getGalleryObject={getGalleryObject}/>
+      <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject}/>
     </div>
   );
 }
