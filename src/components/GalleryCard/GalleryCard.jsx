@@ -10,22 +10,33 @@ import { makeStyles } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
 
-const useStyles = makeStyles({
-
-})
+const useStyles = makeStyles((theme) => ({
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    }
+}))
 
 function GalleryItem({ image, getGalleryObject }) {
 
     const classes = useStyles();
 
-    // image is displayed default to TRUE
-    const [toggled, setToggled] = useState(true);
+    // press button, show description!
+    const [expanded, setExpanded] = useState(false)
 
-    const toggleImage = () => {
-        setToggled(!toggled);
-        console.log('clicked!');
-    }
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
     const addLike = (event) => {
         let id = event.currentTarget.dataset.id;
@@ -66,14 +77,14 @@ function GalleryItem({ image, getGalleryObject }) {
 
     return (
         <div>
-            <Card>
+            <Card elevation={1}>
                 <CardContent>
                     <Typography color="Primary">
                         {image.likes} people love this!
                     </Typography>
                     <CardMedia>
-                        <img 
-                            src={image.path} 
+                        <img
+                            src={image.path}
                             height="200"
                             width="200"
                         />
@@ -81,9 +92,34 @@ function GalleryItem({ image, getGalleryObject }) {
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton>
-                        <DeleteForeverIcon />
+                        <DeleteForeverIcon
+                            data-id={image.id}
+                            onClick={deleteImage}
+                        />
+                    </IconButton>
+                    <IconButton>
+                        <FavoriteIcon
+                            data-id={image.id}
+                            onClick={addLike}
+                        />
+                    </IconButton>
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                    >
+                        <ExpandMoreIcon />
                     </IconButton>
                 </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>
+                            {image.description}
+                        </Typography>
+                    </CardContent>
+                </Collapse>
             </Card>
 
         </div>
@@ -91,15 +127,3 @@ function GalleryItem({ image, getGalleryObject }) {
 }
 
 export default GalleryItem;
-
-// {/* if image is toggled, display image */}
-// {toggled && <img src={image.path}
-// onClick={toggleImage}
-// width="200" height="200" />}
-// {/* if image is clicked, display description */}
-// {!toggled && <p id="galleryItemDescription" onClick={toggleImage}>{image.description}</p>}
-
-
-// <p>{image.likes} people love this! </p>
-// <button data-id={image.id} onClick={addLike}>Love It!</button>
-// <button data-id={image.id} onClick={deleteImage}>Delete</button>

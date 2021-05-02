@@ -8,7 +8,7 @@ function GalleryList({galleryObject, getGalleryObject}) {
     }
     return (
         <Container>
-            <Grid container>
+            <Grid container spacing={3}> 
                 {galleryObject.map(image=>
                     <Grid item key={image.id}
                         xs={12}
