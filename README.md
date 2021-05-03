@@ -40,15 +40,15 @@ Link to software that is required to install the app (e.g. node).
 
 ## Built With
 
-Javascript
-  React
-  Node
-  Express
-  Axios
-Postgres SQL
-Material UI
-HTML5
-CSS3
+- Javascript
+  - React
+  - Node
+  - Express
+  - Axios
+- Postgres SQL
+- Material UI
+- HTML5
+- CSS3
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
