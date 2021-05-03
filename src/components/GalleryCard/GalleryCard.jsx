@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 
+// custom styles 
 const useStyles = makeStyles((theme) => ({
     expand: {
         transform: 'rotate(0deg)',
@@ -31,20 +32,21 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function GalleryItem({ image, getGalleryObject }) {
-
+    // hook to use custom styles to manipulate theme
     const classes = useStyles();
 
     // press button, show description!
     const [expanded, setExpanded] = useState(false)
-
+    // click handler to toggle description, default is false so on click sets to true
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    // router to add like
     const addLike = (event) => {
+        // grab ID of click and store in variable
         let id = event.currentTarget.dataset.id;
         console.log('Clicked like:', id);
-
+        // PUT router to adjust like count on server
         axios({
             method: 'PUT',
             url: `/gallery/${id}`
@@ -59,11 +61,12 @@ function GalleryItem({ image, getGalleryObject }) {
                 console.log('error on add like request:', error);
             })
     }
-
+    // router to delete an image card
     const deleteImage = (event) => {
+        // grab ID of click and store in variable 
         let id = event.currentTarget.dataset.id;
         console.log('clicked delete:', id);
-
+        // DELETE router to delete from DB
         axios({
             method: 'DELETE',
             url: `/gallery/${id}`
@@ -81,19 +84,23 @@ function GalleryItem({ image, getGalleryObject }) {
     return (
         <div>
             <Card elevation={2}>
+                {/* Top of card, shows image */}
                 <CardContent>
                     <img
                         className={classes.media}
                         src={image.path}
                     />
                 </CardContent>
+                {/*  bottom of card, icons to like, delete, or toggle description */}
                 <CardActions disableSpacing>
+                    {/* delete icon */}
                     <IconButton
                         data-id={image.id}
                         onClick={deleteImage}
                     >
                         <DeleteForeverIcon color="primary"/>
                     </IconButton>
+                    {/* like icon */}
                     <IconButton
                         className={classes.icon}
                         data-id={image.id}
@@ -101,10 +108,13 @@ function GalleryItem({ image, getGalleryObject }) {
                     >
                         <FavoriteIcon color="secondary"/>
                     </IconButton>
+                    {/* shows like count */}
                     <Typography color="textPrimary" gutterBottom> 
                         {image.likes} people love this!
                     </Typography>
+                    {/* toggle description icon */}
                     <IconButton
+                        // toggle state for description view 
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
                         })}
@@ -114,6 +124,7 @@ function GalleryItem({ image, getGalleryObject }) {
                         <ExpandMoreIcon color="primary"/>
                     </IconButton>
                 </CardActions>
+                {/* image description info goes here */}
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph>

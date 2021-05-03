@@ -12,8 +12,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Avatar from '@material-ui/core/Avatar'
 
+// storing drawer width in variable as it is used more than once.
 const drawerWidth = 240
-
+//  soo many variations on the global theme :)
 const useStyles = makeStyles((theme) => {
     return {
         page: {
@@ -50,10 +51,14 @@ const useStyles = makeStyles((theme) => {
 })
 
 function Layout({ children }) {
+    // hook for using custom classes
     const classes = useStyles();
+    // history hook (fun word)
     const history = useHistory();
+    // trigger new page view event
     const location = useLocation();
 
+    // storing side bar menu items as an array so that we can map them instead of hard coding everything
     const menuItems = [
         {
             text: 'Add Image',
@@ -75,9 +80,11 @@ function Layout({ children }) {
                 elevation={0}
             >
                 <Toolbar>
+                    {/* page title */}
                     <Typography className={classes.welcome} variant="h5" >
                         Fun In San Francisco!
                     </Typography>
+                    {/* Alex avatar */}
                     <Typography>
                         Alex
                     </Typography>
@@ -94,6 +101,7 @@ function Layout({ children }) {
                 classes={{ paper: classes.drawerPaper }}
             >
                 <div>
+                    {/* side drawer title */}
                     <Typography variant="h5" className={classes.title}>
                         Image Gallery
                     </Typography>
@@ -101,10 +109,12 @@ function Layout({ children }) {
 
             {/* list / links */}
             <List>
+                {/* loops thru menu item array and displays each on DOM */}
                 {menuItems.map(item => (
                     <ListItem
                     button
                     key={item.text}
+                    // on click of location button, browser sends to correct URL
                     onClick={() => history.push(item.path)}
                     className={location.pathname == item.path ? classes.active : null}
                     >
@@ -115,7 +125,7 @@ function Layout({ children }) {
             </List>
 
             </Drawer>
-
+            {/* this layout sit on top of the rest of the app. */}
             <div className={classes.page}>
                 <div className={classes.toolbar}></div>
                 { children }

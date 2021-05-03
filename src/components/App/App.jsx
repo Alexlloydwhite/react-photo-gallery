@@ -7,9 +7,9 @@ import GalleryItemForm from '../GalleryItemForm/GalleryItemForm';
 import Layout from '../Layout/Layout';
 
 function App() {
-
+  // hook for storing image data in array
   const [galleryObject, setGalleryObject] = useState([]);
-
+  // grab data from server and push into array
   const getGalleryObject = () => {
     axios({
       method: 'GET',
@@ -35,9 +35,12 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/add">
+              {/* Passing function to perform GET request => form for adding new image */}
               <GalleryItemForm getGalleryObject={getGalleryObject} />
             </Route>
             <Route path="/">
+              {/* Passing galleryObject(where the data is stored) plus function to perform GET 
+                  request to the container that will hold image cards */}
               <GalleryContainer galleryObject={galleryObject} getGalleryObject={getGalleryObject} />
             </Route>
           </Switch>

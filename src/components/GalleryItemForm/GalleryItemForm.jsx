@@ -7,6 +7,7 @@ import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core';
 
+// custom styles
 const useStyles = makeStyles({
     field: {
         marginTop: 20,
@@ -16,15 +17,19 @@ const useStyles = makeStyles({
 })
 
 function GalleryItemForm({ getGalleryObject }) {
+    // hook to use custom styles
     const classes = useStyles();
+    // state for path input
     const [path, setPath] = useState('');
+    // state for description input
     const [description, setDescription] = useState('');
+    // state for path input error
     const [pathError, setPathError] = useState(false);
+    // state for description input error
     const [descriptionError, setDescriptionError] = useState(false);
 
     const addGalleryImage = () => {
         // wrapping new image into object
-
         const imageToAdd = {
             path: path,
             description: description
@@ -55,22 +60,27 @@ function GalleryItemForm({ getGalleryObject }) {
     // function to call when submit button is pressed
     const handleSubmit = (event) => {
         event.preventDefault();
+        // by default, the inputs are set to no error
+        // this the DOM to only throw error for non complete
+        // input on click submit
         setPathError(false);
         setDescriptionError(false);
-
+        // if path input is empty, toggle error
         if (path == '') {
             setPathError(true);
         }
+        // if description input is empty, toggle error
         if (description == '') {
             setDescriptionError(true);
         }
-
+        // do not allow user to submit form to server until all inputs are completed.
         if (path && description) {
             addGalleryImage();
         }
     } // end handleSubmit
 
     return (
+        // this container holds the input form
         <Container>
             <Typography
                 variant="h4"
@@ -81,6 +91,7 @@ function GalleryItemForm({ getGalleryObject }) {
         </Typography>
 
             <form noValidate autoComplete="off">
+                {/* input for image url */}
                 <TextField
                     className={classes.field}
                     onChange={(event) => setPath(event.target.value)}
@@ -91,6 +102,7 @@ function GalleryItemForm({ getGalleryObject }) {
                     required
                     error={pathError}
                 />
+                {/* input for image description */}
                 <TextField
                     className={classes.field}
                     onChange={(event) => setDescription(event.target.value)}
@@ -103,6 +115,7 @@ function GalleryItemForm({ getGalleryObject }) {
                     required
                     error={descriptionError}
                 />
+                {/* button to submit form */}
                 <Button
                     onClick={handleSubmit}
                     type="submit"
