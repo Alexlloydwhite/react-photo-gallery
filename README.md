@@ -10,8 +10,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in
 
 Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
-
 ## Screen Shot
 
 ![React-gallery](https://user-images.githubusercontent.com/77769682/116876870-c326f180-abe2-11eb-86e6-3b37fce8c452.png)
